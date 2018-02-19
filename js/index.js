@@ -47,6 +47,27 @@ class BaseCharacter {
     hpElement.textContent = this.hp;
     hurtElement.style.width = (100 - this.hp/this.maxHp * 100)+"%";
   }
+   heal(recover){
+    var _this = this;
+    var i = 1;
+    _this.id = setInterval(function(){
+      if(i==1){
+      //  _this.element.getElementsByClassName("effect-image")[0].style.display="block";
+        _this.element.getElementsByClassName("hurt-text")[0].classList.add("heal");
+        _this.element.getElementsByClassName("hurt-text")[0].textContent = recover;
+      }
+
+      // _this.element.getElementsByClassName("effect-image")[0].src = 'images/heal/'+ i +'.png';
+       i++;
+      if (i > 8) {
+      //_this.element.getElementsByClassName("effect-image")[0].style.display = "none";
+      _this.element.getElementsByClassName("hurt-text")[0].classList.remove("heal");
+      _this.element.getElementsByClassName("hurt-text")[0].textContent = "";
+      clearInterval(_this.id);
+    }
+    },50);
+  }
+
 }
 
 class Hero extends BaseCharacter{
@@ -74,6 +95,8 @@ class Hero extends BaseCharacter{
     this.updateHtml(this.hpElement,this.hurtElement);
   }
    heal(){
+      var recover = this.maxHp - this.hp;
+      super.heal(recover);
       this.hpElement.textContent = this.maxHp;
       this.hp = this.maxHp;
       this.updateHtml(this.hpElement,this.hurtElement);
