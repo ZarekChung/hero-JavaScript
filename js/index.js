@@ -47,7 +47,6 @@ class BaseCharacter {
     hpElement.textContent = this.hp;
     hurtElement.style.width = (100 - this.hp/this.maxHp * 100)+"%";
   }
-
 }
 
 class Hero extends BaseCharacter{
@@ -74,7 +73,11 @@ class Hero extends BaseCharacter{
     super.getHurt(damage);
     this.updateHtml(this.hpElement,this.hurtElement);
   }
-   
+   heal(){
+      this.hpElement.textContent = this.maxHp;
+      this.hp = this.maxHp;
+      this.updateHtml(this.hpElement,this.hurtElement);
+    }
 }
 
 class Monster extends BaseCharacter{
@@ -156,6 +159,12 @@ function addSkillEvent(){
     heroAttack();
   }
 }
+function addHealEvent(){
+  var heal = document.getElementById("heal");
+  heal.onclick = function(){
+    hero.heal();
+  }
+}
 
 function finish() {
   var dialog = document.getElementById("dialog")
@@ -168,4 +177,4 @@ function finish() {
 }
 
 addSkillEvent();
-
+addHealEvent();
