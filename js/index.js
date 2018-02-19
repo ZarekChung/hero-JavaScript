@@ -153,6 +153,17 @@ function heroAttack(){
     },500);
   },100);
 
+  monsterAttack();
+}
+
+function heroHeal(){
+  setTimeout(function(){
+     hero.heal()
+    },500);
+   monsterAttack();
+}
+
+function monsterAttack(){
   setTimeout(function(){
     if(monster.alive){
       monster.element.classList.add("attacking");
@@ -174,7 +185,6 @@ function heroAttack(){
 
   },1100);
 }
-
 
 function addSkillEvent(){
   var skill = document.getElementById("skill");
@@ -202,11 +212,11 @@ function finish() {
 document.onkeydown = function(event){
   if(event.keyCode == 65)
   {
-      heroAttack();
+    heroAttack();
   }
   else if(event.keyCode == 68)
   {
-    hero.heal();
+    heroHeal();
   }
 }
 
