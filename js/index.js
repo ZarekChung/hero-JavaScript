@@ -199,5 +199,16 @@ function finish() {
   }
 }
 
+document.onkeydown = function(event){
+  if(event.keyCode == 65)
+  {
+      heroAttack();
+  }
+  else if(event.keyCode == 68)
+  {
+    hero.heal();
+  }
+}
+
 addSkillEvent();
 addHealEvent();
